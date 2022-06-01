@@ -34,7 +34,7 @@ public class Controller {
 	private GridPane gridPane;
 	GraphicsContext graphicsContext2D;
 	@FXML
-	private JFXButton botonGuardar;
+	private JFXButton botonCargar;
 	@FXML
 	private JFXButton botonEntrenar;
 	File dir;
@@ -44,7 +44,7 @@ public class Controller {
 	Matriz pesos;
 	@FXML
 	private JFXButton botonEncontrar;
-	private List<List<Double>> dataChars = new ArrayList<>();
+	private List<List<Double>> patrones = new ArrayList<>();
 	public static int TAMANIO_IMAGEN = 10;
 	@FXML
 	private JFXButton btnclear;
@@ -53,40 +53,25 @@ public class Controller {
 		Matriz matrizIdentidad = Matriz.identidad(TAMANIO_IMAGEN * TAMANIO_IMAGEN, TAMANIO_IMAGEN * TAMANIO_IMAGEN);
 
 		pesos = new Matriz(TAMANIO_IMAGEN * TAMANIO_IMAGEN, TAMANIO_IMAGEN * TAMANIO_IMAGEN);
+		List<Double> temp;
 
-		// 7
-//		List<Double> temp = Arrays.asList(PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, VACIO, VACIO,
-//				VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO,
-//				VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA,
-//				VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO);
-//		dataChars.add(temp);
-//
-//		// 1
-//		temp = Arrays.asList(VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, PINTA, PINTA,
-//				VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO,
-//				VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO,
-//				VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO);
-//		dataChars.add(temp);
-//
-//		// /
-//		temp = Arrays.asList(PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA,
-//				VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO,
-//				VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO,
-//				VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA);
-//		dataChars.add(temp);
-//
-//		// 5
-//		temp = Arrays.asList(PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO,
-//				VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, PINTA, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO,
-//				VACIO, PINTA, PINTA, PINTA, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA,
-//				VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, PINTA, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO);
-//		dataChars.add(temp);
-		
-		double[][] vectoresPatron = new double[dataChars.size()][TAMANIO_IMAGEN * TAMANIO_IMAGEN];
+		temp = Arrays.asList(PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO,
+				VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA,
+				PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO,
+				VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA);
+		patrones.add(temp);
 
-		for (int i = 0; i < dataChars.size(); i++) {
+		temp = Arrays.asList(PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, VACIO, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, PINTA, VACIO,
+				VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO,
+				VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO,
+				VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO);
+		patrones.add(temp);
+
+		double[][] vectoresPatron = new double[patrones.size()][TAMANIO_IMAGEN * TAMANIO_IMAGEN];
+
+		for (int i = 0; i < patrones.size(); i++) {
 			for (int j = 0; j < TAMANIO_IMAGEN * TAMANIO_IMAGEN; j++) {
-				vectoresPatron[i][j] = dataChars.get(i).get(j);
+				vectoresPatron[i][j] = patrones.get(i).get(j);
 			}
 		}
 
@@ -95,29 +80,31 @@ public class Controller {
 
 		Matriz wi;
 		for (int i = 0; i < matrizDePatrones.getTamanioFilas(); i++) {
-			wi = matrizDePatrones.getMatriz(i, i, 0, matrizDePatrones.getTamanioColumnas() - 1).transponer().multiplicar(matrizDePatrones.getMatriz(i, i, 0, matrizDePatrones.getTamanioColumnas() - 1))
-					.menos(matrizIdentidad);
+			Matriz tmp = new Matriz(patrones.get(i).toArray(), 1);
+			wi = tmp.transponer().multiplicar(tmp).menos(matrizIdentidad);
 			pesos = wi.sumar(pesos);
 		}
+		System.out.println("Pesos:");
+		pesos.imprimir();
 	}
 
-	private void onBotonGuardar() {
+	private void onBotonCargar() {
 		List<Double> temp = Arrays.asList(VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO,
 				VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, PINTA, PINTA, VACIO,
 				VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA,
 				PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO);
 		
-//		List<Double> temp = Arrays.asList(PINTA, VACIO, VACIO, VACIO, PINTA, VACIO, VACIO, VACIO, PINTA);
-		
 		pintarImagen(temp);
 
 		gridPane.setGridLinesVisible(true);
-		dataChars.add(temp);
+		patrones.add(temp);
 
 		Image imagenParaAgregar = guardarImagen();
 		imgResult.setImage(imagenParaAgregar);
 		limpiar();
 		entrenar();
+		botonEncontrar.setDisable(false);
+		botonEncontrar.setStyle("-fx-background-color: #008080");
 	}
 
 	private Image guardarImagen() {
@@ -155,7 +142,7 @@ public class Controller {
 	}
 
 	private void onBotonBuscar() {
-		double[] t = new double[TAMANIO_IMAGEN * TAMANIO_IMAGEN];
+		Double[] t = new Double[TAMANIO_IMAGEN * TAMANIO_IMAGEN];
 		ArrayList<Double> temp = new ArrayList<>();
 		gridPane.getChildren().forEach(n -> {
 			if (n instanceof Celda) {
@@ -163,24 +150,35 @@ public class Controller {
 				temp.add(p.getColor().equals(Color.WHITE) ? VACIO : PINTA);
 			}
 		});
-
+		Boolean empty = true;
 		for (int i = 0; i < temp.size(); i++) {
 			t[i] = temp.get(i);
-
+			empty = empty && (t[i] == VACIO);
+		}
+		if (empty) {
+			//Si esta vacio uso el ejemplo de la lectura complementaria del TP3
+			Double[] tmp = { PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, VACIO, VACIO, VACIO, PINTA, VACIO, VACIO, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO, VACIO,
+					VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, VACIO, PINTA, VACIO, VACIO, VACIO, PINTA, PINTA, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, PINTA,
+					PINTA, VACIO, VACIO, VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, PINTA, PINTA, VACIO, PINTA, VACIO, VACIO, VACIO, PINTA, PINTA, PINTA, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO,
+					VACIO, VACIO, PINTA, PINTA, VACIO, VACIO, PINTA, VACIO, PINTA, VACIO, VACIO, VACIO, PINTA, VACIO, VACIO, PINTA, PINTA, PINTA, VACIO, PINTA, VACIO, VACIO, VACIO, VACIO, VACIO,
+					VACIO };
+			t = tmp;
 		}
 		Matriz matrizABuscar = new Matriz(t, TAMANIO_IMAGEN * TAMANIO_IMAGEN);
 		Matriz S = matrizABuscar.transponer().multiplicar(pesos);
-		
 		S = volverAPintadoOVacio(S);
+
 		Matriz t1, pattern = null;
 		limpiar();
+		pintarImagen(S.getAsList());
+		Image imagen = guardarImagen();
+		imagenesView.getItems().add(imagen);
 		for (int i = 0; i < 100; i++) {
-			S = S.multiplicar(pesos);
-			t1 = volverAPintadoOVacio(S);
-
-			pintarImagen(t1.getAsList());
-			Image imagen = guardarImagen();
+			t1 = S.multiplicar(pesos);
+			t1 = volverAPintadoOVacio(t1);
 			limpiar();
+			pintarImagen(t1.getAsList());
+			imagen = guardarImagen();
 			imagenesView.getItems().add(imagen);
 			if (compareTo(S, t1)) {
 				if (isEncontrado(t1)) {
@@ -190,15 +188,16 @@ public class Controller {
 			}
 			S = t1;
 		}
+		limpiar();
 		if (pattern == null) {
 			System.out.println("No se encontro");
 		}
 	}
 
 	private Boolean isEncontrado(Matriz pattern) {
-		for (int i = 0; i < dataChars.size(); i++) {
-			for (int j = 0, k = 0; j < dataChars.get(0).size(); j++) {
-				if (pattern.get(0, j) == dataChars.get(i).get(j)) {
+		for (int i = 0; i < patrones.size(); i++) {
+			for (int j = 0, k = 0; j < patrones.get(0).size(); j++) {
+				if (pattern.get(0, j) == patrones.get(i).get(j)) {
 					k++;
 				}
 				if (k == pattern.getTamanioColumnas()) {
@@ -246,7 +245,8 @@ public class Controller {
 		dir = new File(f, "DataHopfield");
 
 		botonEncontrar.setOnMouseClicked(e -> onBotonBuscar());
-		botonGuardar.setOnMouseClicked(e -> onBotonGuardar());
+		botonEncontrar.setDisable(true);
+		botonCargar.setOnMouseClicked(e -> onBotonCargar());
 		imagenes = FXCollections.observableArrayList();
 		imagenesView.setItems(imagenes);
 		btnclear.setOnMouseClicked(e -> onBotonBorrar());

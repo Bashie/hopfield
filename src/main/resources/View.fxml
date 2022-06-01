@@ -11,8 +11,8 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="flowPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="689.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hopfield.Controller">
-   <AnchorPane layoutX="419.0" layoutY="117.0" prefHeight="198.0" prefWidth="199.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="989.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hopfield.Controller">
+   <AnchorPane layoutX="619.0" layoutY="117.0" prefHeight="198.0" prefWidth="199.0">
       <children>
          <AnchorPane layoutX="5.0" layoutY="-5.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #000;">
             <children>
@@ -21,12 +21,12 @@
          </AnchorPane>
       </children>
    </AnchorPane>
-   <JFXButton fx:id="botonGuardar" buttonType="FLAT" layoutX="310.0" layoutY="5" prefHeight="40.0" prefWidth="120.0" ripplerFill="#008080" style="-fx-background-color: #008080;" text="Cargar modelo" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+   <JFXButton fx:id="botonCargar" buttonType="FLAT" layoutX="410.0" layoutY="225" prefHeight="40.0" prefWidth="120.0" ripplerFill="#008080" style="-fx-background-color: #008080;" text="Entrenar modelo" textAlignment="CENTER" textFill="WHITE" wrapText="true">
       <font>
          <Font name="Helvetica Neue Light" size="12.0" />
       </font>
    </JFXButton>
-   <ListView fx:id="imagenesView" layoutX="89.0" layoutY="440.0" orientation="HORIZONTAL" prefHeight="260.0" prefWidth="548.0" />
+   <ListView fx:id="imagenesView" layoutX="89.0" layoutY="440.0" orientation="HORIZONTAL" prefHeight="260.0" prefWidth="848.0" />
    <Label layoutX="255.0" layoutY="401.0" text="Patrones usados">
       <font>
          <Font name="Helvetica Neue Light" size="24.0" />
@@ -37,7 +37,7 @@
          <Font name="Helvetica Neue Light" size="24.0" />
       </font>
    </Label>
-   <Label layoutX="468.0" layoutY="74.0" text="Objetivo" textAlignment="CENTER">
+   <Label layoutX="668.0" layoutY="74.0" text="Objetivo" textAlignment="CENTER">
       <font>
          <Font name="Helvetica Neue Light" size="24.0" />
       </font>

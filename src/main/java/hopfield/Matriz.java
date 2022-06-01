@@ -94,7 +94,7 @@ public class Matriz {
 		this.mat = A;
 	}
 
-	public Matriz(double vals[], int m) {
+	public Matriz(Object vals[], int m) {
 		this.col = m;
 		fila = (m != 0 ? vals.length / m : 0);
 		if (m * fila != vals.length) {
@@ -103,7 +103,7 @@ public class Matriz {
 		mat = new double[m][fila];
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < fila; j++) {
-				mat[i][j] = vals[i + j * m];
+				mat[i][j] = (double)vals[i + j * m];
 			}
 		}
 	}
